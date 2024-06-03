@@ -15,7 +15,7 @@ def send_email(to_email, subject, body):
     from_email = "your_email@example.com"
     from_password = "your_password"
     smtp_server = "smtp.example.com"
-    smtp_port = 587
+    smtp_port = 2525
 
     msg = MIMEMultipart()
     msg['From'] = from_email
