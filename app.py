@@ -12,8 +12,8 @@ from email.mime.text import MIMEText
 
 # Função para enviar e-mail
 def send_email(to_email, subject, body):
-    from_email = "a.r.alberti@random.org.br"
-    from_password = "your_password"
+    from_email = "fairsistemadeinformacao@gmail.com"
+    from_password = "fair4321"
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
 
