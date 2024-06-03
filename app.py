@@ -10,11 +10,11 @@ b = st.number_input("Digite o valor de B", value=0)
 
 # Campo de entrada para o caminho da pasta
 caminho_pasta = st.text_input("Digite o caminho da pasta para salvar o arquivo")
+nome_arquivo = st.text_input("Digite o nome do arquivo")
 
 # Verificar se o caminho da pasta é válido
 if os.path.isdir(caminho_pasta):
     # Se o caminho for válido, continuar com o processamento
-    nome_arquivo = st.text_input("Digite o nome do arquivo")
     if st.button("Calcular"):
         if nome_arquivo.strip() != "":
             # Cálculo da soma
