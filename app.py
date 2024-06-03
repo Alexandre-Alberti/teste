@@ -14,7 +14,7 @@ from email.mime.text import MIMEText
 def send_email(to_email, subject, body):
     from_email = "a.r.alberti@random.org.br"
     from_password = "your_password"
-    smtp_server = "smtp.example.com"
+    smtp_server = "smtp.gmail.com"
     smtp_port = 587
 
     msg = MIMEMultipart()
