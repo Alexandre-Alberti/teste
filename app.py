@@ -10,17 +10,18 @@ b = st.number_input("Digite o valor de B", value=0)
 
 # Campo de entrada para o caminho da pasta
 caminho_pasta = st.text_input("Digite o caminho da pasta para salvar o arquivo")
-nome_arquivo = st.text_input("Digite o nome do arquivo")
 
-if st.button("Calcular"):
-    soma = a + b  # Cálculo da soma
-    resultado_texto = f"A soma {a} + {b} é igual a: {soma}"
-    st.write(resultado_texto)
-
-    # Verificar se o caminho da pasta é válido
-    if os.path.isdir(caminho_pasta):
-        # Verificar se o nome do arquivo foi inserido
+# Verificar se o caminho da pasta é válido
+if os.path.isdir(caminho_pasta):
+    # Se o caminho for válido, continuar com o processamento
+    nome_arquivo = st.text_input("Digite o nome do arquivo")
+    if st.button("Calcular"):
         if nome_arquivo.strip() != "":
+            # Cálculo da soma
+            soma = a + b
+            resultado_texto = f"A soma {a} + {b} é igual a: {soma}"
+            st.write(resultado_texto)
+
             # Salvar resultado em um arquivo
             caminho_arquivo = os.path.join(caminho_pasta, f"{nome_arquivo}.txt")
             with open(caminho_arquivo, "w") as arquivo:
@@ -29,5 +30,5 @@ if st.button("Calcular"):
             st.success(f"Resultado salvo no arquivo: {caminho_arquivo}")
         else:
             st.error("Por favor, insira um nome para o arquivo.")
-    else:
-        st.error("Caminho da pasta inválido. Por favor, insira um caminho válido.")
+else:
+    st.error("Caminho da pasta inválido. Por favor, insira um caminho válido.")
