@@ -12,10 +12,10 @@ from email.mime.text import MIMEText
 
 # Função para enviar e-mail
 def send_email(to_email, subject, body):
-    from_email = "your_email@example.com"
+    from_email = "a.r.alberti@random.org.br"
     from_password = "your_password"
     smtp_server = "smtp.example.com"
-    smtp_port = 2525
+    smtp_port = 587
 
     msg = MIMEMultipart()
     msg['From'] = from_email
