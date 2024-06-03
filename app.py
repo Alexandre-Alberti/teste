@@ -1,39 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jun  3 18:11:58 2024
-
-@author: alexa
-"""
-
 import streamlit as st
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-
-# Função para enviar e-mail
-def send_email(to_email, subject, body):
-    from_email = "fairsistemadeinformacao@gmail.com"
-    from_password = "fair4321"
-    smtp_server = "smtp.gmail.com"
-    smtp_port = 587
-
-    msg = MIMEMultipart()
-    msg['From'] = from_email
-    msg['To'] = to_email
-    msg['Subject'] = subject
-
-    msg.attach(MIMEText(body, 'plain'))
-
-    try:
-        server = smtplib.SMTP(smtp_server, smtp_port)
-        server.starttls()
-        server.login(from_email, from_password)
-        text = msg.as_string()
-        server.sendmail(from_email, to_email, text)
-        server.quit()
-        st.success('Email enviado com sucesso!')
-    except Exception as e:
-        st.error(f'Erro ao enviar email: {e}')
+import os
 
 # Interface do Streamlit
 st.title("Aplicação de Cálculo")
@@ -41,22 +7,22 @@ st.title("Aplicação de Cálculo")
 # Entrada de dados
 a = st.number_input("Digite o valor de A", value=0)
 b = st.number_input("Digite o valor de B", value=0)
-email = st.text_input("Digite seu email")
+
+# Campo de entrada para o caminho da pasta
+caminho_pasta = st.text_input("Digite o caminho da pasta para salvar o arquivo")
 
 if st.button("Calcular"):
     soma = a + b  # Cálculo da soma
     resultado_texto = f"A soma {a} + {b} é igual a: {soma}"
     st.write(resultado_texto)
 
-    # Enviar resultado por e-mail
-    if email:
-        try:
-            send_email(
-                to_email=email,
-                subject="Resultado do Cálculo",
-                body=resultado_texto
-            )
-        except Exception as e:
-            st.error(f'Erro ao enviar email: {e}')
+    # Verificar se o caminho da pasta é válido
+    if os.path.isdir(caminho_pasta):
+        # Salvar resultado em um arquivo
+        nome_arquivo = os.path.join(caminho_pasta, "resultado.txt")
+        with open(nome_arquivo, "w") as arquivo:
+            arquivo.write(resultado_texto)
+
+        st.success(f"Resultado salvo no arquivo: {nome_arquivo}")
     else:
-        st.error("Por favor, digite um email válido.")
+        st.error("Caminho da pasta inválido. Por favor, insira um caminho válido.")
