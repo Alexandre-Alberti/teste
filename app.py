@@ -7,7 +7,7 @@ from email.mime.text import MIMEText
 def send_email(to_email, subject, body):
     from_email = "fairsis@outlook.com"  # Coloque seu e-mail aqui
     from_password = "fair4321"  # Coloque sua senha aqui
-    smtp_server = "smtp.outlook365.com"  # Coloque o servidor SMTP aqui
+    smtp_server = "smtp.office365.com"  # Coloque o servidor SMTP aqui
     smtp_port = 587  # Porta SMTP
 
     msg = MIMEMultipart()
